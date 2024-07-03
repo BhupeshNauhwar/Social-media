@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { act } from "react";
 import { dispatch } from "./store";
+import {user} from '../assets/data';
 
 
 const initialState ={
-    user:JSON.parse(window?.localStorage.getItem("user"))?? {},
+    user:JSON.parse(window?.localStorage.getItem("user"))?? user,
     edit:false,
 };
 const userSlice=createSlice({
