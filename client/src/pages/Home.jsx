@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { TopBar, ProfileCard  ,FriendsCard, TextInput} from '../components/input';
+import { TopBar, ProfileCard  ,FriendsCard, TextInput,PostCard} from '../components/input';
 import { useForm } from 'react-hook-form';
 
 import { Link } from 'react-router-dom'
@@ -136,7 +136,14 @@ const Home = () => {
 
           </form>
                 {loading ?(<Loading/>):posts?.length>0 ?(
-                  posts?.map((post)=>(<PostCard key={post?._id} post={post}/>))
+                  posts?.map((post)=>(
+                  <PostCard key={post?._id} post={post}
+                    user={user}
+                    delete={()=>{}}
+                    likePost={()=>{}}
+
+                  />
+                ))
                 ):(
                   <div className='flex w-full items-center justify-center '>
                   <p className='text-lg text-ascent-2'>No Post Available</p>
