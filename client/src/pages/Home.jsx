@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { TopBar, ProfileCard  ,FriendsCard, TextInput,PostCard} from '../components/input';
+import { TopBar, ProfileCard  ,FriendsCard, TextInput,PostCard, EditProfile,} from '../components/input';
 import { useForm } from 'react-hook-form';
 
 import { Link } from 'react-router-dom'
@@ -13,7 +13,7 @@ import { BiImages, BiSolidVideo } from 'react-icons/bi';
 import {Loading} from '../components/input'
 import { MdGif } from 'react-icons/md';
 const Home = () => {
-  const { user } = useSelector(state => state.user);
+  const { user ,edit } = useSelector(state => state.user);
   const [friendRequest ,setFriendRequest]=useState(requests);
   const [suggestedFriends ,setSuggestedFriends]=useState(suggest);
   const [errMsg ,setErrrMsg]=useState("");
@@ -34,7 +34,8 @@ const Home = () => {
 
 
   return (
-    <div className='home w-full px-4 lg:px-10 pb-20 2xl:px-40 bg-bgColor lg:rounded-lg h-screen overflow-hidden'>
+    <>
+       <div className='home w-full px-4 lg:px-10 pb-20 2xl:px-40 bg-bgColor lg:rounded-lg h-screen overflow-hidden'>
       <TopBar />
 
       <div className='w-full flex flex-col lg:flex-row gap-4 pt-5 pb-10 h-full'>
@@ -45,7 +46,7 @@ const Home = () => {
         </div>
 
         {/* Center */}
-        <div className=' flex-1 h-full bg-primary flex  px-4  flex-col gap-6 overflow-y-auto'>
+        <div className=' flex-1 h-full  flex px-4 flex-col gap-6 overflow-y-auto'>
 
           <form className='bg-primary px-6 rounded-lg'
           onSubmit={handleSubmit(handlePostSubmit)}
@@ -244,6 +245,8 @@ const Home = () => {
         </div>
       </div>
     </div>
+    {edit && <EditProfile />}
+    </>
   );
 };
 
