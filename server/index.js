@@ -6,6 +6,8 @@ import bodyParser from 'body-parser';
 
 import dbConnection from './dbConfig/dbConnect.js';
 import helmet from 'helmet';
+import errorMiddleware from './middleware/errorMiddleware.js';
+import router from './routes/index.js';
 
 dotenv.config();
 
@@ -23,7 +25,9 @@ app.use(express.json({limit:"10mb"}));
 app.use(express.urlencoded({extended:true}));
 
 app.use(morgan("dev"));
+app.use(router);
 
+app.use(errorMiddleware);
 
 app.listen(PORT,()=>{
     console.log(`Server Started At http://localhost:${PORT}`);

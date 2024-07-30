@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">Reset Password</h2>
+        <form id="reset-password-form" action="/users/reset-password" method="POST">
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 font-bold mb-2">New Password:</label>
+                <input type="password" id="password" name="password" required
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div class="mb-6">
+                <label for="confirm-password" class="block text-gray-700 font-bold mb-2">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirmPassword" required
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <input type="hidden" id="userId" name="userId">
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Reset Password
+                </button>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('id');
+            
+            console.log(`User ID from URL: ${userId}`); 
+    
+            if (userId) {
+                document.getElementById('userId').value = userId;
+            } else {
+                console.error('User ID not found in URL');
+            }
+        });
+    </script>
+    
+</body>
+</html>
