@@ -5,7 +5,7 @@ import Users from "../models/userModel.js";
 import Verification from "../models/emailVerification.js";
 import { resetPassswordLink } from "../utils/sendEmail.js";
 import PasswordReset from '../models/passwordReset.js'
-import { request } from 'express';
+
 
 export const verifyEmail = async (req, res) => {
     const { userId, token } = req.params;
