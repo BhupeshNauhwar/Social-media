@@ -10,6 +10,7 @@ import { AiOutlineInteraction } from 'react-icons/ai';
 import { ImConnection } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { apiRequest } from '../utils';
 
 const Register = () => {
   const { register, handleSubmit, getValues, formState: { errors } } = useForm({ mode: "onChange" });
@@ -18,7 +19,16 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
-    // Handle form submission
+      setIsSubmitting(true);
+      try {
+        const res=await apiRequest({
+          url:"/auth/register",
+          data:data,
+          method:"POST",
+        })
+      } catch (error) {
+        console.log(error);
+      }
   };
 
   return (
